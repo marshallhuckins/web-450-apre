@@ -1,6 +1,6 @@
 /**
  * Author: Professor Krasso
- * Modified by: GitHub Copilot
+ * Modified by: You
  * Date: 8/8/2024
  * File: app.component.ts
  * Description: App component for the MEAN Stack Application
@@ -11,13 +11,15 @@ import { RouterLink, RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, RouterLink],
+  imports: [
+    RouterOutlet,
+    RouterLink
+  ],
   template: `
-    <router-outlet />
+    <router-outlet></router-outlet>
   `,
-styles: `
+  styles: `
 
-`
+  `
 })
-export class AppComponent {
-}
+export class AppComponent { }

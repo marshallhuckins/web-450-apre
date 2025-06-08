@@ -9,11 +9,15 @@ import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 import { ChartComponent } from '../shared/chart/chart.component';
+import { SalesByCategoryTableComponent } from '../sales-by-category-table/sales-by-category-table.component';
+
 
 @Component({
   selector: 'app-dashboard',
   standalone: true,
-  imports: [ChartComponent],
+  imports: [ChartComponent,
+    SalesByCategoryTableComponent
+  ],
   template: `
     <h2>Dashboard</h2>
     <div class="dashboard">
@@ -32,6 +36,9 @@ import { ChartComponent } from '../shared/chart/chart.component';
         <div class="card">
           <app-chart [type]="'doughnut'" [label]="'Report Types'" [data]="reportCounts" [labels]="reportTypes"></app-chart>
         </div>
+      </div>
+      <div class="dashboard_sales-table">
+        <app-sales-by-category-table></app-sales-by-category-table>
       </div>
       <div class="dashboard__table-container">
         <table class="table">
