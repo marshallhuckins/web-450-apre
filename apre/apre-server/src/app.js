@@ -12,7 +12,6 @@ const express = require('express');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const { notFoundHandler, errorHandler } = require('./utils/error-handler');
-const salesRouter = require('./routes/sales');
 
 // Importing the index router
 const indexRouter = require('./routes/index');
@@ -48,7 +47,6 @@ app.use('/api/dashboard', dashboardRouter);
 app.use('/api/reports/sales', salesReportsRouter);
 app.use('/api/reports/agent-performance', agentPerformanceReportsRouter);
 app.use('/api/reports/customer-feedback', customerFeedbackReportsRouter);
-app.use('/api/sales', salesRouter);
 
 // Use the error handling middleware
 app.use(notFoundHandler);

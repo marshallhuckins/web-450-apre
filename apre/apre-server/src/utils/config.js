@@ -16,7 +16,7 @@ const db = {
 // Declare the config object
 const config = {
   port: 3000, // This is the default port for MongoDB
-  dbUrl: `mongodb+srv://${db.username}:${db.password}@cluster0.lujih.mongodb.net/${db.name}?retryWrites=true&w=majority`,
+  dbUrl: 'mongodb://apre_user:s3cret@cluster0-shard-00-00.lujih.mongodb.net:27017,cluster0-shard-00-01.lujih.mongodb.net:27017,cluster0-shard-00-02.lujih.mongodb.net:27017/apre?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority',
   dbname: db.name // This is the name of the database in MongoDB
 }
 

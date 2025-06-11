@@ -78,4 +78,27 @@ router.get('/regions/:region', (req, res, next) => {
   }
 });
 
+/**
+ * GET /category
+ * Returns total sales grouped by category.
+ */
+router.get('/category', (req, res, next) => {
+  try {
+    mongo(async db => {
+      const results = await db
+        .collection('sales')
+        .aggregate([
+          { $group: { _id: '$category', totalSales: { $sum: '$amount' } } },
+          { $project: { _id: 0, category: '$_id', totalSales: 1 } },
+          { $sort: { category: 1 } }
+        ])
+        .toArray();
+      res.send(results);
+    }, next);
+  } catch (err) {
+    console.error('Error getting sales by category:', err);
+    next(err);
+  }
+});
+
 module.exports = router;

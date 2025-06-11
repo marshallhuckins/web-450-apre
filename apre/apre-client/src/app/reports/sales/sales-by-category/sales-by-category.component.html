@@ -1,0 +1,17 @@
+<div class="card">
+  <h2>Sales by Category</h2>
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Category</th>
+        <th>Total Sales</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of sales">
+        <td>{{ item.category }}</td>
+        <td>{{ item.totalSales | number }}</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
