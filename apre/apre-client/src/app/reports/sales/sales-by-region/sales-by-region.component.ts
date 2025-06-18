@@ -13,7 +13,9 @@ import { ChartComponent } from '../../../shared/chart/chart.component';
     <div class="region-container">
       <form class="form" [formGroup]="regionForm" (ngSubmit)="onSubmit()">
         <div class="form__group">
-          <label class="label" for="region">Region</label>
+          <label class="label" for="region">Region
+          <span class="required-asterisk" aria-hidden="true">*</span>
+          </label>
           <select class="select" formControlName="region" id="region" name="region">
             @for(region of regions; track region) {
               <option value="{{ region }}">{{ region }}</option>
@@ -46,6 +48,12 @@ import { ChartComponent } from '../../../shared/chart/chart.component';
     .form, .chart-card {
       width: 50%;
       margin: 20px 0;
+    }
+
+    .required-asterisk {
+      color: red;
+      margin-left: 2px;
+      font-weight: bold;
     }
   `]
 })

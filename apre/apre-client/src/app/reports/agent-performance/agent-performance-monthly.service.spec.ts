@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import {
-  HttpClientTestingModule,
+  provideHttpClientTesting,
   HttpTestingController
 } from '@angular/common/http/testing';
 
@@ -15,7 +15,7 @@ describe('AgentPerformanceMonthlyService', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [HttpClientTestingModule],
+      imports: [provideHttpClientTesting],
       providers: [AgentPerformanceMonthlyService]
     });
     service  = TestBed.inject(AgentPerformanceMonthlyService);
