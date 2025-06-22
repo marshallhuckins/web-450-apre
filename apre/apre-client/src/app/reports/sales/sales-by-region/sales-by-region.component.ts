@@ -52,7 +52,7 @@ import { ChartComponent } from '../../../shared/chart/chart.component';
 
     .required-asterisk {
       color: red;
-      margin-left: 2px;
+      margin-left: -4px;
       font-weight: bold;
     }
   `]

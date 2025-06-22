@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 import {
-  provideHttpClientTesting,
+  HttpClientTestingModule,
   HttpTestingController
 } from '@angular/common/http/testing';
 
@@ -12,20 +12,18 @@ import {
 describe('AgentPerformanceMonthlyService', () => {
   let service: AgentPerformanceMonthlyService;
   let httpMock: HttpTestingController;
+  const fullUrl = 'http://localhost:3000/api/reports/agent-performance/monthly';
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      imports: [provideHttpClientTesting],
+      imports: [HttpClientTestingModule],
       providers: [AgentPerformanceMonthlyService]
     });
     service  = TestBed.inject(AgentPerformanceMonthlyService);
     httpMock = TestBed.inject(HttpTestingController);
   });
 
-  afterEach(() => {
-    // Verify that no unmatched requests are outstanding
-    httpMock.verify();
-  });
+  afterEach(() => httpMock.verify());
 
   it('should be created', () => {
     expect(service).toBeTruthy();
@@ -33,24 +31,22 @@ describe('AgentPerformanceMonthlyService', () => {
 
   it('should issue a GET request to the correct URL', () => {
     service.getMonthlyPerformance().subscribe();
-    const req = httpMock.expectOne('/api/reports/agent-performance/monthly');
-    expect(req.request.method).toBe('GET');
-    // respond with an empty array to complete the call
-    req.flush([]);
+    const testReq = httpMock.expectOne(req =>
+      req.method === 'GET' && req.url === fullUrl
+    );
+    expect(testReq.request.method).toBe('GET');
+    testReq.flush([]); // complete
   });
 
   it('should return an array of MonthPerformance objects', () => {
-    const mockResponse: MonthPerformance[] = [
+    const mock: MonthPerformance[] = [
       { month: '2023-01', averagePerformance: 75 },
       { month: '2023-02', averagePerformance: 80 }
     ];
-
     service.getMonthlyPerformance().subscribe(data => {
-      expect(data.length).toBe(2);
-      expect(data).toEqual(mockResponse);
+      expect(data).toEqual(mock);
     });
-
-    const req = httpMock.expectOne('/api/reports/agent-performance/monthly');
-    req.flush(mockResponse);
+    const testReq = httpMock.expectOne(req => req.url === fullUrl);
+    testReq.flush(mock);
   });
 });

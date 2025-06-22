@@ -21,6 +21,7 @@ const dashboardRouter = require('./routes/dashboard');
 const salesReportsRouter = require('./routes/reports/sales');
 const agentPerformanceReportsRouter = require('./routes/reports/agent-performance');
 const monthlyPerfRouter = require('./routes/reports/agent-performance/monthly');
+const customerFeedbackYearRouter = require('./routes/reports/customer-feedback/year');
 const customerFeedbackReportsRouter = require('./routes/reports/customer-feedback');
 
 // Variable declaration for the express app
@@ -48,6 +49,7 @@ app.use('/api/dashboard', dashboardRouter);
 app.use('/api/reports/sales', salesReportsRouter);
 app.use('/api/reports/agent-performance', agentPerformanceReportsRouter);
 app.use('/api/reports/agent-performance/monthly', monthlyPerfRouter);
+app.use('/api/reports/customer-feedback/year', customerFeedbackYearRouter);
 app.use('/api/reports/customer-feedback', customerFeedbackReportsRouter);
 
 // Use the error handling middleware
